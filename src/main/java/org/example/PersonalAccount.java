@@ -7,4 +7,9 @@ public class PersonalAccount extends BankAccount{
         super(costumerName, billingAddress, initialBalance);
         this.cpf = cpf;
     }
+
+    @Override
+    public String getAccountDetails() {
+        return "Personal Account: [CPF: " + this.cpf + "]";
+    }
 }

@@ -43,4 +43,6 @@ public abstract class BankAccount {
     public void setBillingAddress(String billingAddress) {
         this.billingAddress = billingAddress;
     }
+
+    public abstract String getAccountDetails();
 }
