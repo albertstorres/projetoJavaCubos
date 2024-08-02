@@ -24,4 +24,23 @@ public abstract class BankAccount {
         }
     }
 
+    public String getCostumerName() {
+        return costumerName;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public List<String> getTransactions() {
+        return transactions;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
+    }
 }
