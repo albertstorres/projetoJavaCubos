@@ -17,4 +17,11 @@ public abstract class BankAccount {
         this.transactions.add("Saldo inicial: " + initialBalance);
     }
 
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            transactions.add("Depósito: R$" + amount);
+        }
+    }
+
 }
