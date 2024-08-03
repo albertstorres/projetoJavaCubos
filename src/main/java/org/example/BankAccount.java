@@ -21,7 +21,27 @@ public abstract class BankAccount {
         if (amount > 0) {
             balance += amount;
             transactions.add("Depósito: R$" + amount);
+        } else {
+            transactions.add("Falha na tentativa de depósito: R$ " + amount);
         }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            transactions.add("Saque: R$ " + "- " + amount);
+        } else {
+            transactions.add("Falha na tentativa de saque: R$ " + amount);
+        }
+    }
+
+    public void printStatement() {
+        System.out.println("Extrato de: " + costumerName);
+        for (String transaction : transactions) {
+            System.out.println(transaction);
+        }
+        System.out.println("---------------------");
+        System.out.println("Saldo atual: R$ " + balance);
     }
 
     public String getCostumerName() {
@@ -34,10 +54,6 @@ public abstract class BankAccount {
 
     public double getBalance() {
         return balance;
-    }
-
-    public List<String> getTransactions() {
-        return transactions;
     }
 
     public void setBillingAddress(String billingAddress) {
