@@ -52,6 +52,8 @@ public class BankSystem {
                 System.out.println("2. Pessoa Jurídica");
                 System.out.println("________________________");
                 System.out.println("Digite novamente o tipo da conta: ");
+                accountType = scanner.nextInt();
+                scanner.nextLine();
             }while(accountType != 1 || accountType != 2);
         }
 
