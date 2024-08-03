@@ -96,7 +96,10 @@ public class BankAccountTest{
     @Test
     public void testPrintStatement() {
         personalAccount.printStatement();
+        businessAccount.printStatement();
+
         verify(mockPrintStream).println("Extrato de: Anthony Sevy");
+        verify(mockPrintStream).println("Extrato de: Nord Aço");
     }
 
 }
