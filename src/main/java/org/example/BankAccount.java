@@ -9,9 +9,9 @@ public abstract class BankAccount {
     private double balance;
     private List <String> transactions;
 
-    public BankAccount(String billingAddress, String costumerName, double initialBalance) {
-        this.billingAddress = billingAddress;
+    public BankAccount(String costumerName, String billingAddress, double initialBalance) {
         this.costumerName = costumerName;
+        this.billingAddress = billingAddress;
         this.balance = initialBalance;
         this.transactions = new ArrayList<>();
         this.transactions.add("Saldo inicial: " + initialBalance);

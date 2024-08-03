@@ -2,15 +2,27 @@ package org.example;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class BankAccountTest{
     private PersonalAccount personalAccount;
     private BusinessAccount businessAccount;
 
+    @Mock
+    private PrintStream mockPrintStream;
+
     @Before
     public void setup() {
+        System.setOut(mockPrintStream);
+
         personalAccount = new PersonalAccount("Anthony Sevy", "Rua 7 de Setembro, 542", 1000, "123.123.123-13");
         businessAccount = new BusinessAccount("Nord Aço", "Rua Cons. Manoel Correa de Melo, 15", 10000, "55.444.333/0001-22");
     }
@@ -64,7 +76,6 @@ public class BankAccountTest{
         assertEquals(valorEsperadoPf, valorObtidoPf, delta);
         assertEquals(valorEsperadoPj, valorObtidoPj, delta);
     }
-
     @Test
     public void withdrawMoneyFromTheAccountInvalid() {
         double saquePf = personalAccount.getBalance() + 1;
@@ -80,6 +91,12 @@ public class BankAccountTest{
 
         assertEquals(valorEsperadoPf, valorObtidoPf, delta);
         assertEquals(valorEsperadoPj, valorObtidoPj, delta);
+    }
+
+    @Test
+    public void testPrintStatement() {
+        personalAccount.printStatement();
+        verify(mockPrintStream).println("Extrato de: Anthony Sevy");
     }
 
 }
