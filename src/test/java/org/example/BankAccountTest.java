@@ -31,6 +31,22 @@ public class BankAccountTest{
         assertEquals(valorEsperadoPf, valorObtidoPf, delta);
         assertEquals(valorEsperadoPj, valorObtidoPj, delta);
     }
+    @Test
+    public void depositAddMoneyAccountInvalid() {
+        double depositoPf = -1;
+        double valorEsperadoPf = personalAccount.getBalance();
+        double depositoPj = -1;
+        double valorEsperadoPj = businessAccount.getBalance();
+        double delta = 0.01;
+
+        personalAccount.deposit(depositoPf);
+        businessAccount.deposit(depositoPj);
+        double valorObtidoPf = personalAccount.getBalance();
+        double valorObtidoPj = businessAccount.getBalance();
+
+        assertEquals(valorEsperadoPf, valorObtidoPf, delta);
+        assertEquals(valorEsperadoPj, valorObtidoPj, delta);
+    }
 
     @Test
     public void withdrawMoneyFromTheAccount() {
