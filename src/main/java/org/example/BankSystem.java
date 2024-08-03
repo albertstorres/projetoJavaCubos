@@ -12,6 +12,51 @@ public class BankSystem {
         this.scanner = scanner;
     }
 
+    public void createAccount() {
+        System.out.println("Criando uma nova conta: ");
+        System.out.println("Digite o nome do cliente: ");
+        String name = scanner.nextLine(); //nextLine() serve para limpar o buffer e para ler tudo antes do ENTER (/n);
+
+        System.out.println("Digiete o endereço de cobrança: ");
+        String address = scanner.nextLine();
+
+        System.out.println("Digite o saldo inicial: ");
+        double balance = scanner.nextDouble();
+        scanner.nextLine(); //Limpando o lixo.
+
+        System.out.println("________________________");
+        System.out.println("1. Pessoa Física");
+        System.out.println("2. Pessoa Jurídica");
+        System.out.println("________________________");
+        System.out.println("Digite o tipo da conta: ");
+        int accountType = scanner.nextInt();
+        scanner.nextLine();
+
+        if (accountType == 1) {
+            System.out.println("Digite o CPF: ");
+            String cpf = scanner.nextLine();
+            PersonalAccount personalAccount = new PersonalAccount(name, address, balance, cpf);
+            accounts.put(cpf, personalAccount);
+            System.out.println("Conta pessoal criada com sucesso.");
+        } else if (accountType == 2) {
+            System.out.println("Digite o CNPJ: ");
+            String cnpj = scanner.nextLine();
+            BusinessAccount businessAccount = new BusinessAccount(name, address, balance, cnpj);
+            accounts.put(cnpj, businessAccount);
+            System.out.println("Conta jurídica criada com sucesso.");
+        } else {
+            do {
+                System.out.println("Opção inválida!");
+                System.out.println("________________________");
+                System.out.println("1. Pessoa Física");
+                System.out.println("2. Pessoa Jurídica");
+                System.out.println("________________________");
+                System.out.println("Digite novamente o tipo da conta: ");
+            }while(accountType != 1 || accountType != 2);
+        }
+
+    }
+
     public static void main(String[] args) {
         HashMap<String, BankAccount> accounts = new HashMap<String, BankAccount>();
         Scanner scanner = new Scanner(System.in);
