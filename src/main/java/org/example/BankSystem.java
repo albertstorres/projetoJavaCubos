@@ -23,6 +23,8 @@ public class BankSystem {
         System.out.println("Digite o saldo inicial: ");
         double balance = scanner.nextDouble();
         scanner.nextLine(); //Limpando o lixo.
+        System.out.println("Digite a senha: ");
+        String password = scanner.nextLine();
 
         System.out.println("________________________");
         System.out.println("1. Pessoa Física");
@@ -35,13 +37,13 @@ public class BankSystem {
         if (accountType == 1) {
             System.out.println("Digite o CPF: ");
             String cpf = scanner.nextLine();
-            PersonalAccount personalAccount = new PersonalAccount(name, address, balance, cpf);
+            PersonalAccount personalAccount = new PersonalAccount(name, address, balance, password, cpf);
             accounts.put(cpf, personalAccount);
             System.out.println("Conta pessoal criada com sucesso.");
         } else if (accountType == 2) {
             System.out.println("Digite o CNPJ: ");
             String cnpj = scanner.nextLine();
-            BusinessAccount businessAccount = new BusinessAccount(name, address, balance, cnpj);
+            BusinessAccount businessAccount = new BusinessAccount(name, address, balance, password, cnpj);
             accounts.put(cnpj, businessAccount);
             System.out.println("Conta jurídica criada com sucesso.");
         } else {
@@ -58,6 +60,16 @@ public class BankSystem {
         }
 
     }
+    public void login (String identifier, String password) {
+        if (accounts.containsKey(identifier)) {
+            BankAccount bankAccount = accounts.get(identifier); // Salvando a conta encontrada;
+            if (bankAccount.verifyPassword(password)){
+                
+            } else {
+            System.out.println("Conta não encontrada.");
+        }
+    }
+
 
     public static void main(String[] args) {
         HashMap<String, BankAccount> accounts = new HashMap<String, BankAccount>();

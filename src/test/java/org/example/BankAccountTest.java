@@ -23,8 +23,8 @@ public class BankAccountTest{
     public void setup() {
         System.setOut(mockPrintStream);
 
-        personalAccount = new PersonalAccount("Anthony Sevy", "Rua 7 de Setembro, 542", 1000, "123.123.123-13");
-        businessAccount = new BusinessAccount("Nord Aço", "Rua Cons. Manoel Correa de Melo, 15", 10000, "55.444.333/0001-22");
+        personalAccount = new PersonalAccount("Anthony Sevy", "Rua 7 de Setembro, 542", 1000, "abc123", "123.123.123-13");
+        businessAccount = new BusinessAccount("Nord Aço", "Rua Cons. Manoel Correa de Melo, 15", 10000, "abc1234", "55.444.333/0001-22");
     }
 
     @Test
