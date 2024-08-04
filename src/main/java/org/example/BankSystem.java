@@ -67,11 +67,44 @@ public class BankSystem {
 
             if (passwordMatch) {
                 System.out.println("Usuário logado com sucesso. Bem vindo(a)" + bankAccount.getCostumerName());
-
+                accountMenu(bankAccount);
             }
         } else {
             System.out.println("Conta não encontrada.");
         }
+    }
+    public void accountMenu(BankAccount bankAccount) {
+        int option;
+        do {
+            System.out.println("________________________");
+            System.out.println("1. Depositar");
+            System.out.println("2. Sacar");
+            System.out.println("3. Extrato");
+            System.out.println("0. Voltar");
+            System.out.println("________________________");
+            System.out.println("Digite sua opção: ");
+            option = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (option) {
+                case 1:
+                    System.out.println("Digite o valor do depósito: ");
+                    double amount = scanner.nextDouble();
+                    scanner.nextLine();
+                    bankAccount.deposit(amount);
+                case 2:
+                    System.out.println("Digite o valor do saque: ");
+                    double withdraw = scanner.nextDouble();
+                    scanner.nextLine();
+                    bankAccount.withdraw(withdraw);
+                case 3:
+                    bankAccount.printStatement();
+
+                case 0:
+                    System.out.println("Voltando...");
+                    break;
+            }
+        }while(option < 0 && option > 3);
     }
 
 
@@ -104,6 +137,9 @@ public class BankSystem {
                     System.out.println("Digite sua senha: ");
                     String password = scanner.nextLine();
                     bankSystem.login(identifier, password);
+                    break;
+                case 2 :
+                    bankSystem.createAccount();
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
