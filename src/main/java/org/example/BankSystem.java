@@ -73,6 +73,15 @@ public class BankSystem {
             System.out.println("Conta não encontrada.");
         }
     }
+    public void deleteAccount (String identify) {
+        boolean bankAccount = accounts.containsKey(identify);
+        if (bankAccount) {
+            accounts.remove(identify);
+            System.out.println("Conta removida com sucesso.");
+        } else {
+            System.out.println("Conta não encontrada.");
+        }
+    }
     public void accountMenu(BankAccount bankAccount) {
         int option;
         do {
@@ -92,14 +101,16 @@ public class BankSystem {
                     double amount = scanner.nextDouble();
                     scanner.nextLine();
                     bankAccount.deposit(amount);
+                    break;
                 case 2:
                     System.out.println("Digite o valor do saque: ");
                     double withdraw = scanner.nextDouble();
                     scanner.nextLine();
                     bankAccount.withdraw(withdraw);
+                    break;
                 case 3:
                     bankAccount.printStatement();
-
+                    break;
                 case 0:
                     System.out.println("Voltando...");
                     break;
@@ -140,6 +151,11 @@ public class BankSystem {
                     break;
                 case 2 :
                     bankSystem.createAccount();
+                    break;
+                case 3 :
+                    System.out.println("Digite o CPF ou CNPJ: ");
+                    String identify = scanner.nextLine();
+                    bankSystem.deleteAccount(identify);
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
