@@ -63,9 +63,13 @@ public class BankSystem {
     public void login (String identifier, String password) {
         if (accounts.containsKey(identifier)) {
             BankAccount bankAccount = accounts.get(identifier); // Salvando a conta encontrada;
-            if (bankAccount.verifyPassword(password)){
-                
-            } else {
+            boolean passwordMatch = bankAccount.verifyPassword(password);
+
+            if (passwordMatch) {
+                System.out.println("Usuário logado com sucesso. Bem vindo(a)" + bankAccount.getCostumerName());
+
+            }
+        } else {
             System.out.println("Conta não encontrada.");
         }
     }
@@ -94,6 +98,12 @@ public class BankSystem {
                 case 0 :
                     System.out.println("Saindo...");
                     break;
+                case 1 :
+                    System.out.println("Digite o CPF ou CNPJ: ");
+                    String identifier = scanner.nextLine();
+                    System.out.println("Digite sua senha: ");
+                    String password = scanner.nextLine();
+                    bankSystem.login(identifier, password);
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
